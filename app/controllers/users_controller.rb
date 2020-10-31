@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+<<<<<<< HEAD
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:update, :edit]
 
@@ -44,4 +45,6 @@ private
     redirect_to user_path(current_user)
     end
   end
+=======
+>>>>>>> origin/master
 end

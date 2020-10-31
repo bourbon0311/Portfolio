@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
  devise_for :users
  get 'favorites/create'
  get 'favorites/delete'
@@ -16,4 +17,7 @@ Rails.application.routes.draw do
     #resources :relationships, only: [:create, :destroy]
  post 'follow/:id' => 'relationships#follow', as: 'follow'
  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+=======
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+>>>>>>> origin/master
 end
