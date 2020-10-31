@@ -1,0 +1,37 @@
+<p><%= flash[:notice] %></p>
+<h1>ユーザー情報</h1>
+<table class="table">
+	<tr><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %></tr>
+
+	<tr>
+		<th>お名前</th>
+		<th><%= user.name %></th>
+	</tr>
+
+	<tr>
+		<th>自己紹介</th>
+		<th><%= user.introduction %></th>
+	</tr>
+	<tr>
+		<th>
+	  		フォロー数: <%= link_to user.follower.count, relationships_follower_path(user_id: user.id) %>
+		</th>
+	</tr>
+	<tr>
+		<th>
+	  		フォロワー数: <%= link_to user.followed.count, relationships_followed_path(user_id: user.id) %>
+		</th>
+	</tr>
+	<% unless user == current_user %>
+  		<% if current_user.following?(user) %>
+      		<th><%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class: "btn btn-primary" %></th>
+      	<% else %>
+      		<th><%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-success" %></th>
+      	<% end %>
+    <% end %>
+ 	</tr>
+</table>
+
+<div class="row">
+	<%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
+</div>

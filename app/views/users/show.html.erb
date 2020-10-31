@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<%= render 'users/profile', user: @user %>
+			<%= render 'foods/newfood', food: @food %>
+		</div>
+		<div class="col-xs-9">
+			<h2>ユーザー紹介</h2>
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Title</th>
+						<th>Opinion</th>
+						<th colspan="3"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @foods.each do |food| %>
+						<tr>
+							<td>
+								<%= link_to user_path(food.user) do %>
+									<%= attachment_image_tag(food.user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+								<% end %>
+							</td>
+							<td><%= link_to food.title, food_path(food), class: "food_#{food.id}" %></td>
+							<td><%= food.body %></td>
+							<td>
+								<%= link_to "#{food.food_comments.count} コメント", food_path(food.id) %>
+							</td>
+						</tr>
+					<% end %>
+					<%# paginate @user %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

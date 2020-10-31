@@ -1,0 +1,25 @@
+<h2>新規投稿</h2>
+<%= form_for(food) do |f| %>
+    <% if @food.errors.any? %>
+      <%= @food.errors.count %>
+      個のerrorがあります<br>
+
+      <% @food.errors.full_messages.each do |msg| %>
+      <%= msg %><br>
+      <% end %>
+      <% end %>
+
+	<div class="field row">
+		<%= f.label :title %>
+		<%= f.text_field :title, class: "col-xs-12 food_title" %>
+	</div>
+
+	<div class="field row">
+		<%= f.label :body %>
+		<%= f.text_area :body, class: "col-xs-12 food_body" %>
+	</div>
+
+	<div class="actions row">
+		<%= f.submit class: "btn btn-primary col-xs-12" %>
+	</div>
+<% end %>

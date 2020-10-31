@@ -1,0 +1,7 @@
+<br>
+<div>
+  <%= form_with(url: searchs_path, method: :get, local: true) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag "Search" ,:username => nil ,class: "button is-info"%>
+  <% end %>
+</div>

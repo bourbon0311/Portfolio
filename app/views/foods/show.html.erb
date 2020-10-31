@@ -1,0 +1,67 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<%= render 'users/profile', user: @user %>
+			<%= render 'foods/newfood', food: @food_new %>
+		</div>
+		<div class="col-xs-9">
+			<h2>投稿詳細</h2>
+			<table class="table table-striped">
+				<tr>
+					<td>
+						<%= link_to user_path(@user) do %>
+						<%= attachment_image_tag(@food.user, :profile_image, :fill, 60, 60, fallback: "no-image-mini.jpg") %><br>
+						<%= @food.user.name %>
+						<% end %>
+					</td>
+					<td><%= link_to @food.title, food_path(@food) %></td>
+					<td><%= @food.body %></td>
+
+					<% if @user.id == current_user.id %>
+					<td><%= link_to "Edit", edit_food_path(@food), class: "btn-sm btn-success edit_food_#{@food.id}" %></td>
+					<td><%= link_to "Destroy", food_path(@food), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_food_#{@food.id}" %></td>
+					<% end %>
+				</tr>
+			</table>
+			<% if @food.favorited_by?(current_user) %>
+				<li>
+			  		<%= link_to food_favorites_path(@food), method: :delete do %>
+			    		<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+			    		<%= @food.favorites.count %> いいね解除
+			  		<% end %>
+				</li>
+					<% else %>
+				<li>
+			  		<%= link_to food_favorites_path(@food), method: :post do %>
+			    		<i class="fa fa-heart-o" aria-hidden="true"></i>
+			    		<%= @food.favorites.count %> いいね！
+			  		<% end %>
+				</li>
+			<% end %>
+			<br>
+			<a href="#comments"><%= @food.food_comments.count %></a>件のコメントがあります
+			<div class="comment-list bt style-2" id="comments">
+			    <h2 class="comment-count"><%= @food.food_comments.count %>件コメント</h2>
+			    <div class="row">
+				    <div class="col-xs-9">
+				        <% @food.food_comments.each do |c| %>
+					        <a href="#" class="link-author"><%= c.user.name %></a>
+					            <span class="comment-date"><%= c.created_at.strftime('%Y/%m/%d') %>
+					            </span>
+					            <div class="comment-entry"><%= c.comment %>
+						            <% if c.user == current_user %>
+								          <%=link_to "delete", food_food_comment_path(c.food, c), method: :delete, class: "btn btn-danger pull-right" %>
+									<% end %>
+								</div>
+			            <% end %>
+			        </div>
+			    </div>
+			</div>
+			<br>
+			<%= form_for [@food, @food_comment] do |f| %>
+			    <%= f.text_area :comment, rows:"5", class: "form-control",placeholder: "コメントをここに" %>
+			    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+			<% end %>
+		</div>
+	</div>
+</div>
