@@ -69,7 +69,9 @@ gem 'pry-rails'
 gem 'kaminari','~> 1.2.1'
 gem 'font-awesome-sass'
 gem 'ransack'
+gem 'bulma-rails'
 gem 'dotenv-rails'
+gem 'rails-i18n'
 
 group :production do
   gem 'mysql2'

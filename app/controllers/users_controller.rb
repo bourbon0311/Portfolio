@@ -33,6 +33,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def rank
+    @users = User.
+    left_joins(:comments).
+    distinct.
+    sort_by do |user|
+      hoges = user.comments
+      if hoges.present?
+        hoges.map(&:score).sum
+      else
+        0
+      end
+    end.
+    reverse
+  end
+
 private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)

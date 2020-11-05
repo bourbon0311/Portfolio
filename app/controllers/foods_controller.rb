@@ -1,9 +1,10 @@
 class FoodsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show]
 
   def show
     @food = Food.find(params[:id])
     @food_new = Food.new
+    @review = FoodComment.new
     @user = @food.user
     @food_comment = FoodComment.new
   end
@@ -12,13 +13,15 @@ class FoodsController < ApplicationController
     @foods = Food.all
     @food = Food.new
     @user = current_user
+    @food_comments = FoodComment.all
+    @all_ranks = Food.find(Favorite.group(:food_id).order('count(food_id) desc').limit(10).pluck(:food_id))
   end
 
   def create
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     if @food.save
-      redirect_to food_path(@food.id), notice: "You have created ramen successfully."
+      redirect_to food_path(@food.id), notice: "投稿が完了しました"
     else
       @foods = Food.all
       @user = current_user
@@ -37,7 +40,7 @@ class FoodsController < ApplicationController
   def update
     @food = Food.find(params[:id])
     if @food.update(food_params)
-      redirect_to food_path(@food), notice: "You have updated ramen successfully."
+      redirect_to food_path(@food), notice: "投稿を削除しました"
     else
       render "edit"
     end
@@ -52,6 +55,6 @@ class FoodsController < ApplicationController
   private
 
   def food_params
-    params.require(:food).permit(:title, :body)
+    params.require(:food).permit(:title, :body, :food_image)
   end
 end
