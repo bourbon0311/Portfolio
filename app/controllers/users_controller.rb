@@ -34,18 +34,10 @@ class UsersController < ApplicationController
   end
 
   def rank
-    @users = User.
-    left_joins(:comments).
-    distinct.
-    sort_by do |user|
-      hoges = user.comments
-      if hoges.present?
-        hoges.map(&:score).sum
-      else
-        0
-      end
-    end.
-    reverse
+    Food.left_joins(:food_comments).group(:id).order(Arel.sql('SUM(food_comments.score) desc'))
+    @foods = Food.left_joins(:food_comments).group(:id).order(Arel.sql('SUM(food_comments.score) desc'))
+
+    @all_ranks = Food.find(FoodComment.group(:food_id).order('SUM(food_comments.score) desc').limit(10).pluck(:food_id))
   end
 
 private

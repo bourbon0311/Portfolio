@@ -39,3 +39,9 @@
     hidePrevious : false
   });
 });
+
+$(function() {
+    $('.a').slick({
+        dots: true,
+    });
+});

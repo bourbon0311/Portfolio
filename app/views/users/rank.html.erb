@@ -1,5 +1,39 @@
-<% @users.each do |user| %>
-  <%= link_to user_path(user) do %>
-    <%= user.name %><br>
-  <% end %>
-<% end %>
+<div class="container">
+    <div class="columns is-centered">
+      	<div class="column is-8">
+		<h1>人気TOP10ランキング</h1><br>
+			<% @foods.each_with_index do |food, i| %>
+				<div class="card mb-6">
+		            <header class="card-header">
+		            	<p class="card-header-title">
+		            		第<%= i + 1 %>位！
+							<%= food.title %>
+		            	</p>
+		            </header>
+		            <div class="card-content">
+	                    <div class="average-score-display ml-3 pt-2">
+	                    	<table>
+	                    		<tr>
+	                    			<th>投稿者</th><th></th><th>点数</th>
+	                    		</tr>
+	                    		<tr>
+			                    	<td><%= food.user.name %></td>
+			                    	<td>合計★<%= food.food_comments.sum(:score) %></td>
+			                    </tr>
+	                    	</table>
+	                  	</div>
+		            </div>
+	            	<footer class="card-footer">
+	              		<%= link_to food_food_comments_path(food), class: "button card-footer-item" do %>
+	                	レビューを見る
+	              		<% end %>
+	              		<%= link_to food_path(food), class: "button card-footer-item" do %>
+	                	レビューを書く
+	              		<% end %>
+	            	</footer>
+		        </div>
+			<% end %>
+		</div>
+	</div>
+</div>
+

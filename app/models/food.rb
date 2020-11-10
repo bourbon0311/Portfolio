@@ -13,13 +13,19 @@ class Food < ApplicationRecord
 		end
 	end
 
-	#
 	def review_score_percentage
 		unless self.food_comments.empty?
 			food_comments.average(:score).round(1).to_f*100/5
 		else
 			0.0
 		end
+	end
+
+	def total_score
+		unless self.food_cmments.empty?
+			food_comment.average(:score).round(1)
+		end
+
 	end
 
 	has_many :favorites, dependent: :destroy

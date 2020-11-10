@@ -2,10 +2,6 @@
 	<div class="row">
 		<br>
 		<h2 class="new-title" id="exa">新規投稿</h2>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&items;</span>
-		</button>
-
 		<%= form_for @food, remote: true do |f| %>
 		    <% if @food.errors.any? %>
 		        <%= @food.errors.count %>
@@ -39,9 +35,7 @@
 				</div>
 					<div class="model-footer">
 						<tr>
-							<buttan type="button" class="btn btn-secondary" date-dismiss="model" >閉じる</buttan>
-								<%= f.submit "投稿する", class: "btn btn-primary col-xs-12 glyphicon glyphicon-hand-up" %>
-							</div>
+							<%= f.submit "投稿する", class: "btn btn-primary col-xs-12 glyphicon glyphicon-hand-up" %>
 						</tr>
 					</div>
 			</div>

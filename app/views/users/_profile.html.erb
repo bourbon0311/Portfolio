@@ -1,5 +1,7 @@
-<p><%= flash[:notice] %></p>
-<h1>ユーザー情報</h1>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+<div class="anton">
+	<p><%= flash[:notice] %></p>
+	<h1>ユーザー情報</h1>
 <table class="table">
 	<tr><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %></tr>
 	<tr>
@@ -32,4 +34,5 @@
 
 <div class="row">
 	<%= link_to 'プロフィール編集', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
+</div>
 </div>

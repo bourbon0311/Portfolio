@@ -29,7 +29,7 @@
 							<td><%= link_to food.title, food_path(food), class: "food_#{food.id}" %></td>
 							<td><%= food.body %></td>
 							<td><%= link_to "#{@user.food_comments.count} コメント", user_path(@user.id) %></td>
-							<% if food.favorited_by?(current_user) %>
+							<% if @food.favorited_by?(current_user) %>
 								<td>
 						  			<%= link_to food_favorites_path(food), method: :delete do %>
 						    			<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
@@ -78,7 +78,8 @@
                     <div class="star-rating-back">★★★★★</div>
                   </div>
                   <div class="average-score-display ml-3 pt-2">
-                    <%= food.average_score %>点（<%= food.food_comments.count %>件のレビュー）
+                    <%= food.average_score %>点（<%= food.food_comments.count %>件のレビュー)
+                    <%= food.user.name %>
                   </div>
                 </div>
               </div>

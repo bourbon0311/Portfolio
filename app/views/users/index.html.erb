@@ -7,7 +7,7 @@
 		<!--users一覧 -->
 		<div class="col-xs-9">
 		  	<table class="table table-striped">
-				<h1>ユーザー一覧</h1>
+				<h1>ユーザー一覧</h1><br>
 				<thead>
 					<tr>
 						<th>イメージ</th>
@@ -18,6 +18,8 @@
 				<tbody>
 					<% @users.each do |user| %>
 						<tr>
+							<% user.food_comments.each do |food_comment| %>
+							<% end %>
 							<td><%= attachment_image_tag(user, :profile_image, :fill, 35, 35, fallback: "no-image-mini.jpg") %></td>
 							<td><%= user.name %></td>
 							<td><%= "フォロー数: #{user.follower.count}" %><td>

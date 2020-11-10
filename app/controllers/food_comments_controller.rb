@@ -2,11 +2,6 @@ class FoodCommentsController < ApplicationController
 	before_action :authenticate_user!, only: [:create]
 
 	def create
-	# 	food = Food.find(params[:food_id])
-	# 	comment = current_user.food_comments.new(food_comment_params)
-	# 	comment.food_id = food.id
-	# 	comment.save
-	# 	redirect_to request.referrer
 		@review = FoodComment.new(food_comment_params)
 		@review.user_id = current_user.id
 		if @review.save

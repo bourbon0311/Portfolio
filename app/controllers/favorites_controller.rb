@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   def create
-	food = Food.find(params[:food_id])
+	  food = Food.find(params[:food_id])
   	favorite = current_user.favorites.new(food_id: food.id)
   	favorite.save
   	redirect_to request.referrer
