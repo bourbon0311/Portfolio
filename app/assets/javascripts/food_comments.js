@@ -3,7 +3,7 @@ var stars = document.querySelector(".ratings").children;
 var ratingValue = document.getElementById("rating-value");
 var ratingValueDisplay = document.getElementById("rating-value-display");
 
-let index;
+var index;
 
 for(let i=0; i<stars.length; i++){
 	console.log(stars.length)
