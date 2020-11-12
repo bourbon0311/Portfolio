@@ -43,9 +43,3 @@ $(document).on('turbolinks:load',function () {
   });
 });
 
-$(function() {
-  $(".font-top").animate({
-    marginLeft : '500px',
-  },1000);
-});
-

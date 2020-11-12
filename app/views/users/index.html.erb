@@ -1,4 +1,7 @@
 <div class="container">
+	<div class="col-xs-3 col-xs-offset-9">
+        <%= render 'searchs/search', user: @user %>
+    </div>
 	<div class="row">
 		<div class="col-xs-3">
 			<%= render 'users/profile', user: @user %>
@@ -7,7 +10,7 @@
 		<!--users一覧 -->
 		<div class="col-xs-9">
 		  	<table class="table table-striped">
-				<h1>ユーザー一覧</h1><br>
+				<h1>登録ユーザー一覧</h1><br>
 				<thead>
 					<tr>
 						<th>イメージ</th>
@@ -20,7 +23,7 @@
 						<tr>
 							<% user.food_comments.each do |food_comment| %>
 							<% end %>
-							<td><%= attachment_image_tag(user, :profile_image, :fill, 35, 35, fallback: "no-image-mini.jpg") %></td>
+							<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
 							<td><%= user.name %></td>
 							<td><%= "フォロー数: #{user.follower.count}" %><td>
 							<td><%= "フォロワー数: #{user.followed.count}" %></td>
