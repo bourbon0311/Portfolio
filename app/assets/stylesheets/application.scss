@@ -34,3 +34,33 @@ body {
 	font-size: 40px;
 	font-family: 'Anton', sans-serif;
 }
+
+.navbar-inverse .navbar-nav > li > a{
+	color: #f00;
+	text-decoration:underline;
+}
+
+#image-skkipr{
+	height:700px;
+}
+
+.ramen-a {
+	background-image: image-url('3.jpg');
+}
+
+.ramen-b {
+	background-image: image-url('11.jpg');
+}
+
+.ramen-c {
+	background-image: image-url('5.jpg');
+}
+
+.ramen-d {
+	background-image: image-url('main_img_sample03-2.png');
+}
+
+.ramen-e {
+	background-image: image-url('photo-15.jpg');
+}
+

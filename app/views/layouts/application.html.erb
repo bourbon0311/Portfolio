@@ -23,7 +23,7 @@
           <nav>
             <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
-                <li><%= link_to ' ホーム', user_path(current_user), class: 'glyphicon glyphicon-home home' %></li>
+                <li><%= link_to ' マイページ', user_path(current_user), class: 'glyphicon glyphicon-home home' %></li>
                 <li><%= link_to ' ユーザー一覧', users_path, class: 'glyphicon glyphicon-user users' %></li>
                 <li><%= link_to ' レビュー一覧', foods_path, class: 'glyphicon glyphicon-book books' %></li>
                 <li><%= link_to ' ランキング ', rank_path , class: 'glyphicon glyphicon-signal rankings' %></li>

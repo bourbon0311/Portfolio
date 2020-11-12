@@ -14,9 +14,12 @@
 //= require rails-ujs
 //= require activestorage
 //= require bootstrap-sprockets
+//= require turbolinks
+//= require_tree .
 
-(document).ready(function () {
-  $("#theTarget").skippr({
+
+$(document).on('turbolinks:load',function () {
+  $(".image-top").skippr({
     // スライドショーの変化 ("fade" or "slide")
     transition : 'slide',
     // 変化に係る時間(ミリ秒)
@@ -41,7 +44,8 @@
 });
 
 $(function() {
-    $('.a').slick({
-        dots: true,
-    });
+  $(".font-top").animate({
+    marginLeft : '500px',
+  },1000);
 });
+

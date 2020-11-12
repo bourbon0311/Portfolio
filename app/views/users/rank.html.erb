@@ -14,10 +14,11 @@
 	                    <div class="average-score-display ml-3 pt-2">
 	                    	<table>
 	                    		<tr>
-	                    			<th>投稿者</th><th></th><th>点数</th>
+	                    			<th>投稿者</th>
+	                    			<td><%= food.user.name %></td>
 	                    		</tr>
 	                    		<tr>
-			                    	<td><%= food.user.name %></td>
+	                    			<th>点数</th>
 			                    	<td>合計★<%= food.food_comments.sum(:score) %></td>
 			                    </tr>
 	                    	</table>

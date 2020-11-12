@@ -1,5 +1,5 @@
 class FoodCommentsController < ApplicationController
-	before_action :authenticate_user!, only: [:create]
+	before_action :authenticate_user!
 
 	def create
 		@review = FoodComment.new(food_comment_params)
