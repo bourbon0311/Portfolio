@@ -1,24 +1,11 @@
 # README
+こちらはRamen Mapのサイトコードになります。
+言語は主にRuby on Railsで部分的にjavascriptを使用しています。
+バージョンはruby 2.5.7です。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ramen Mapでは登録したユーザーの皆さんが各々に、好きなラーメンを投稿しあい、
+それらを共有し、新しい味を知るキッカケを作ることが出来ればと考えています。
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+機能は投稿・コメント・レビュー・いいね・検索・ランキングなどです。
+ランキング機能は、サイト全体で投稿されたラーメンを他ユーザーがレビューした点数の合計で
+上位１０の投稿をランキング発表しています。
