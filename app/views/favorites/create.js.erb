@@ -1,1 +1,2 @@
-$(".food_<%= @food.id %>").html("<%= j(render 'foods/favorite',  food: @food ) %>")
+$("#food_favorite").html("<%= j(render 'foods/favorite', food: @food ) %>")
+$("#food_favorite<%= @food.id %>").html("<%= j(render 'foods/favorite', food: @food ) %>")

@@ -11,6 +11,8 @@
 			<h2>投稿詳細</h2>
 			<table class="table table-striped">
 				<tr>
+					<th>投稿者</th><th>イメージ</th><th>タイトル</th><th>内容</th>
+				<tr>
 					<td>
 						<%= link_to user_path(@user) do %>
 							<%= attachment_image_tag(@food.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
@@ -30,45 +32,32 @@
 					<% end %>
 				</tr>
 			</table>
-			<% if @food.favorited_by?(current_user) %>
-				<li>
-			  		<%= link_to food_favorites_path(@food), method: :delete, remote: true do %>
-			    		<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-			    		<%= @food.favorites.count %> いいね解除
-			  		<% end %>
-				</li>
-					<% else %>
-				<li>
-			  		<%= link_to food_favorites_path(@food), method: :post, remote: true do %>
-			    		<i class="fa fa-heart-o" aria-hidden="true"></i>
-			    		<%= @food.favorites.count %> いいね！
-			  		<% end %>
-				</li>
-			<% end %>
-			<br>
-
+			<div id="food_favorite">
+				<%= render 'foods/favorite', food:@food %>
+			</div>
 			<a href="#comments"><%= @food.food_comments.count %></a>件のレビューがあります
 			<div class="comment-list bt style-2" id="comments">
 			    <div class="row">
 				    <div class="col-xs-9">
-				        <% @food.food_comments.each do |c| %>
+			        <% @food.food_comments.each do |c| %>
+			        	<table class="table table-striped">
 				        	<tr><%= attachment_image_tag @food_comment, :post_image, :fill, 100, 100, fallback: "no_image.jpg" %></tr>
-				        	<table>
-				        		<th>
-							        <a href="#" class="link-author"><%= c.user.name %></a>
-						            <span class="comment-date"><%= c.created_at.strftime('%Y/%m/%d') %>
-						            </span>
-						            <div class="comment-entry">
-						            	<%= c.content %>
-							            <% if c.user == current_user %>
-									          <%=link_to "delete", food_food_comment_path(c.food, c), method: :delete, class: "btn btn-danger pull-right" %>
-										<% end %>
-									</div>
-								</th>
-							</table>
-			            <% end %>
-			        </div>
+			        		<th>
+						        <a href="#" class="link-author"><%= c.user.name %></a>
+					          <span class="comment-date"><%= c.created_at.strftime('%Y/%m/%d') %>
+					          </span>
+					          <div class="comment-entry">
+					           	<%= c.content %>
+						          <% if c.user == current_user %>
+								        <%=link_to "delete", food_food_comment_path(c.food, c), method: :delete, class: "btn btn-danger pull-right" %>
+											<% end %>
+										</div>
+									</th>
+								</table>
+		          <% end %>
+			      </div>
 			    </div>
+			  </div>
 			</div>
 			<%= render 'food_comments/review', food_comment: @review, food: @food %>
 			<br>

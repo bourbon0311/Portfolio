@@ -40,7 +40,10 @@
 							<td><%= link_to food.title, food_path(food), class: "food_#{food.id}" %></td>
 							<td><%= food.body %></td>
 							<td><%= link_to "#{@user.food_comments.count} コメント", user_path(@user.id) %></td>
-							<%= render 'foods/favorite', food:food %>
+							<%#= @food.inspect %>
+							<!-- <div id="food_favorite<%= food.id %>"> -->
+								<%= render 'foods/favorite', food: food %>
+							<!-- </div> -->
 							</tr>
 	                    	<tr><%= food.user.name %></tr>
 	                	</table>
