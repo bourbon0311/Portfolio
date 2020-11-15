@@ -50,7 +50,7 @@ class FoodsController < ApplicationController
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
-    redirect_to foods_path
+    redirect_to foods_path, notice: "投稿を削除しました"
   end
 
   private

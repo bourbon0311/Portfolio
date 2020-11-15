@@ -2,7 +2,7 @@
 	<div class="row">
 		<br>
 		<h2 class="new-title" id="exa">新規投稿</h2>
-		<%= form_for @food, remote: true do |f| %>
+		<%= form_for @food do |f| %>
 		    <% if @food.errors.any? %>
 		        <%= @food.errors.count %>
 		        個のerrorがあります<br>
