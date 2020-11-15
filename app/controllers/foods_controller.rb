@@ -25,6 +25,7 @@ class FoodsController < ApplicationController
     else
       @foods = Food.all
       @user = current_user
+      Flash.now(notice: "投稿が作成できませんでした")
       render 'index'
     end
   end
@@ -40,7 +41,7 @@ class FoodsController < ApplicationController
   def update
     @food = Food.find(params[:id])
     if @food.update(food_params)
-      redirect_to food_path(@food), notice: "投稿を削除しました"
+      redirect_to food_path(@food), notice: "投稿を更新しました"
     else
       render "edit"
     end
