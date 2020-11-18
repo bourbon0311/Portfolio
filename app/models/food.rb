@@ -1,5 +1,6 @@
 class Food < ApplicationRecord
 	belongs_to :user
+	has_many :tag
 	attachment :food_image, destroy: false
 
     #レビューの点数を表示するメソッド

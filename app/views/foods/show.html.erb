@@ -12,11 +12,15 @@
 			<table class="table table-striped">
 				<tr>
 					<th>投稿者</th><th>イメージ</th><th>タイトル</th><th>内容</th>
+				</tr>
 				<tr>
 					<td>
 						<%= link_to user_path(@user) do %>
 							<%= attachment_image_tag(@food.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
 							<%= @food.user.name %>
+							<% @food.tags.each do |tag| %>
+  								<span class="label"><%= tag.name %></span>
+							<% end %>
 						<% end %>
 					</td>
 					<td><%= attachment_image_tag @food, :food_image, :fill, 100, 100, fallback: "no-image-mini.jpg" %>
@@ -25,10 +29,9 @@
 					</td>
 					<td><%= @food.body %>
 					</td>
-
 					<% if @user.id == current_user.id %>
-					<td><%= link_to "Edit", edit_food_path(@food), class: "btn-sm btn-success edit_food_#{@food.id}" %></td>
-					<td><%= link_to "Destroy", food_path(@food), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_food_#{@food.id}" %></td>
+						<td><%= link_to "Edit", edit_food_path(@food), class: "btn-sm btn-success edit_food_#{@food.id}" %></td>
+						<td><%= link_to "Destroy", food_path(@food), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_food_#{@food.id}" %></td>
 					<% end %>
 				</tr>
 			</table>
@@ -36,30 +39,26 @@
 				<%= render 'foods/favorite', food:@food %>
 			</div>
 			<a href="#comments"><%= @food.food_comments.count %></a>件のレビューがあります
+			<%= render 'food_comments/review', food_comment: @review, food: @food %>
+			<br>
 			<div class="comment-list bt style-2" id="comments">
-			    <div class="row">
-				    <div class="col-xs-9">
-			        <% @food.food_comments.each do |c| %>
-			        	<table class="table table-striped">
-				        	<tr><%= attachment_image_tag @food_comment, :post_image, :fill, 100, 100, fallback: "no_image.jpg" %></tr>
-			        		<th>
-						        <a href="#" class="link-author"><%= c.user.name %></a>
-					          <span class="comment-date"><%= c.created_at.strftime('%Y/%m/%d') %>
-					          </span>
-					          <div class="comment-entry">
-					           	<%= c.content %>
-						          <% if c.user == current_user %>
-								        <%=link_to "delete", food_food_comment_path(c.food, c), method: :delete, class: "btn btn-danger pull-right" %>
-											<% end %>
-										</div>
-									</th>
-								</table>
-		          <% end %>
-			      </div>
-			    </div>
+	        	<% @food.food_comments.each do |c| %>
+	        		<table class="table table-striped">
+			        	<tr><%= attachment_image_tag @food_comment, :post_image, :fill, 100, 100, fallback: "no_image.jpg" %></tr>
+		        		<th>
+				        	<a href="#" class="link-author"><%= c.user.name %></a>
+			          		<span class="comment-date"><%= c.created_at.strftime('%Y/%m/%d') %></span>
+			          		<div class="comment-entry">
+			           			<%= c.content %>
+				          		<% if c.user == current_user %>
+						        	<%=link_to "delete", food_food_comment_path(c.food, c), method: :delete, class: "btn btn-danger pull-right" %>
+								<% end %>
+							</div>
+						</th>
+					</table>
+          		<% end %>
 			  </div>
 			</div>
-			<%= render 'food_comments/review', food_comment: @review, food: @food %>
 			<br>
 		</div>
 	</div>

@@ -21,6 +21,10 @@ class FoodsController < ApplicationController
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     if @food.save
+      tags = Vision.get_image_data(food.image)
+      tags.each do |tag|
+        food.tags.create(name: tag)
+      end
       redirect_to food_path(@food.id), notice: "投稿が完了しました"
     else
       @foods = Food.all

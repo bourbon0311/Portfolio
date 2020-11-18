@@ -72,6 +72,7 @@ gem 'ransack'
 gem 'bulma-rails'
 gem 'dotenv-rails'
 gem 'rails-i18n'
+gem 'dotenv-rails'
 
 group :production do
   gem 'mysql2'
