@@ -18,12 +18,12 @@
 						<%= link_to user_path(@user) do %>
 							<%= attachment_image_tag(@food.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
 							<%= @food.user.name %>
-							<% @food.tags.each do |tag| %>
-  								<span class="label"><%= tag.name %></span>
-							<% end %>
 						<% end %>
 					</td>
-					<td><%= attachment_image_tag @food, :food_image, :fill, 100, 100, fallback: "no-image-mini.jpg" %>
+					<td><%= attachment_image_tag @food, :food_image, :fill, 100, 100, fallback: "no-image-mini.jpg" %><br>
+						<% @food.tags.each do |tag| %>
+  							<span class="tag-name"><%= tag.name %></span>
+						<% end %>
 					</td>
 					<td><%= link_to @food.title, food_path(@food) %>
 					</td>

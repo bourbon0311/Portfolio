@@ -21,15 +21,14 @@ class FoodsController < ApplicationController
     @food = Food.new(food_params)
     @food.user_id = current_user.id
     if @food.save
-      tags = Vision.get_image_data(food.image)
+      tags = Vision.get_image_data(@food.food_image)
       tags.each do |tag|
-        food.tags.create(name: tag)
+        @food.tags.create(name: tag)
       end
       redirect_to food_path(@food.id), notice: "投稿が完了しました"
     else
       @foods = Food.all
       @user = current_user
-      Flash.now(notice: "投稿が作成できませんでした")
       render 'index'
     end
   end
@@ -45,6 +44,11 @@ class FoodsController < ApplicationController
   def update
     @food = Food.find(params[:id])
     if @food.update(food_params)
+      tags = Vision.get_image_data(@food.food_image)
+      @food.tags.destroy_all
+      tags.each do |tag|
+        @food.tags.create(name: tag)
+      end
       redirect_to food_path(@food), notice: "投稿を更新しました"
     else
       render "edit"

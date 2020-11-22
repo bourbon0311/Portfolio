@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions' ,
     :registrations => 'users/registrations'
   }
-
  get 'favorites/create'
  get 'favorites/delete'
  root 'home#top'
